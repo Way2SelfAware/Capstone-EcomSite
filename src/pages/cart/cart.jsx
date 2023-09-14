@@ -1,42 +1,31 @@
 // React Hooks
-import React, { useEffect, useContext } from "react";
-import { ShopContext } from "../../context/shop-context";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 // My Imports
 import "./cart.css";
-import { getSingleProduct } from "../../API/apiEndpoints";
+import { fetchProductById } from "../../API/apiEndpoints";
 
-const Cart = () => {
-  // useContext
-  const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
-  const totalAmount = getTotalCartAmount();
-  const singleProduct = getSingleProduct(productId);
-
+const Cart = ({ id }) => {
   // useNavigate
   const navigate = useNavigate();
   // State Management
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [product, setProduct] = useState(null);
-  //useEffect
+  // variables
+  const totalAmount = 0;
+
+  // Fetch Single Product Details
   useEffect(() => {
-    fetch(singleProduct)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+    fetch(fetchProductById(id))
+      .then((response) => response.json())
       .then((data) => {
         setProduct(data);
-        setLoading(false);
       })
       .catch((error) => {
-        setError(error);
-        setLoading(false);
-        console.error("Error fetching single product from API:", error);
+        console.error("Error fetching (getSingleProduct) details:", error);
       });
-  }, [singleProduct]);
+  }, [id]);
 
   return (
     <div className="cart">

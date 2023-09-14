@@ -1,53 +1,385 @@
-// Products - GET
-export const getAllProducts = "https://fakestoreapi.com/products";
-export const getSingleProduct = (productId) =>
-  `https://fakestoreapi.com/products/${productId}`;
+// API endpoints as Functions:
+// Function to fetch all products
+export async function fetchAllProducts() {
+  try {
+    const response = await fetch("https://fakestoreapi.com/products");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
+}
 
-export const limitProducts = "https://fakestoreapi.com/products?limit=5";
-export const sortProducts = "https://fakestoreapi.com/products?sort=desc";
-export const getAllCategories = "https://fakestoreapi.com/products/categories";
-export const getProductsInCategory =
-  "https://fakestoreapi.com/products/category/jewelery";
+// Function to fetch a single product by ID
+export async function fetchProductById(id) {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    return null;
+  }
+}
 
-// Products - POST or PATCH
-export const addNewProduct = "https://fakestoreapi.com/products";
-export const updateProduct = "https://fakestoreapi.com/products/7";
+// Function to fetch products with a limit
+export async function fetchProductsLimit(limit) {
+  try {
+    const response = await fetch(
+      `https://fakestoreapi.com/products?limit=${limit}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching limited products:", error);
+    return [];
+  }
+}
 
-// Products - DELETE
-export const deleteProduct = "https://fakestoreapi.com/products/6";
+// Function to fetch products sorted by 'asc' or 'desc'
+export async function fetchProductsSorted(sortOrder) {
+  try {
+    const response = await fetch(
+      `https://fakestoreapi.com/products?sort=${sortOrder}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching sorted products:", error);
+    return [];
+  }
+}
 
-// Cart - GET
-export const getAllCarts = "https://fakestoreapi.com/carts";
-export const getSingleCart = "https://fakestoreapi.com/carts/5";
-export const limitCarts = "https://fakestoreapi.com/carts?limit=5";
-export const sortCarts = "https://fakestoreapi.com/carts?sort=desc";
-export const getCartsDateRange =
-  "https://fakestoreapi.com/carts?startdate=2019-12-10&enddate=2020-10-10";
-export const getUserCarts = "https://fakestoreapi.com/carts/user/2";
+// Function to fetch all product categories
+export async function fetchAllCategories() {
+  try {
+    const response = await fetch(
+      "https://fakestoreapi.com/products/categories"
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return [];
+  }
+}
 
-// Cart - POST
-export const addNewCart = "https://fakestoreapi.com/carts";
+// Function to fetch products in a specific category
+export async function fetchProductsByCategory(category) {
+  try {
+    const response = await fetch(
+      `https://fakestoreapi.com/products/category/${category}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching products by category:", error);
+    return [];
+  }
+}
 
-// Cart - PUT or PATCH
-export const updateCart = "https://fakestoreapi.com/carts/7";
+// Function to add a new product
+export async function addProduct(newProduct) {
+  try {
+    const response = await fetch("https://fakestoreapi.com/products", {
+      method: "POST",
+      body: JSON.stringify(newProduct),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error adding a product:", error);
+    return null;
+  }
+}
 
-// Cart - DELETE
-export const deleteCart = "https://fakestoreapi.com/carts/6";
+// Function to update a product by ID
+export async function updateProductById(id, updatedProduct) {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedProduct),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error updating a product:", error);
+    return null;
+  }
+}
 
-// Users - GET
-export const getAllUsers = "https://fakestoreapi.com/users";
-export const getSingleUser = "https://fakestoreapi.com/users/1";
-export const limitUsers = "https://fakestoreapi.com/users?limit=5";
-export const sortUsers = "https://fakestoreapi.com/users?sort=desc";
+// Function to delete a product by ID
+export async function deleteProductById(id) {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+      method: "DELETE",
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error deleting a product:", error);
+    return null;
+  }
+}
 
-// Users - POST
-export const addNewUser = "https://fakestoreapi.com/users";
+// Functions for Cart API
+// Function to fetch all carts
+export async function fetchAllCarts() {
+  try {
+    const response = await fetch("https://fakestoreapi.com/carts");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching carts:", error);
+    return [];
+  }
+}
 
-// Users - PUT or PATCH
-export const updateUser = "https://fakestoreapi.com/users/7";
+// Function to fetch a single cart by ID
+export async function fetchCartById(id) {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/carts/${id}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching cart:", error);
+    return null;
+  }
+}
 
-// Users - DELETE
-export const deleteUser = "https://fakestoreapi.com/users/6";
+// Function to fetch carts with a limit
+export async function fetchCartsLimit(limit) {
+  try {
+    const response = await fetch(
+      `https://fakestoreapi.com/carts?limit=${limit}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching limited carts:", error);
+    return [];
+  }
+}
 
-// Login
-export const userLogin = "https://fakestoreapi.com/auth/login";
+// Function to fetch carts sorted by 'asc' or 'desc'
+export async function fetchCartsSorted(sortOrder) {
+  try {
+    const response = await fetch(
+      `https://fakestoreapi.com/carts?sort=${sortOrder}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching sorted carts:", error);
+    return [];
+  }
+}
+
+// Function to fetch carts in a date range
+export async function fetchCartsByDateRange(startDate, endDate) {
+  try {
+    const response = await fetch(
+      `https://fakestoreapi.com/carts?startdate=${startDate}&enddate=${endDate}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching carts by date range:", error);
+    return [];
+  }
+}
+
+// Function to fetch user carts by user ID
+export async function fetchUserCarts(userId) {
+  try {
+    const response = await fetch(
+      `https://fakestoreapi.com/carts/user/${userId}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching user carts:", error);
+    return [];
+  }
+}
+
+// Function to add a new cart
+export async function addCart(newCart) {
+  try {
+    const response = await fetch("https://fakestoreapi.com/carts", {
+      method: "POST",
+      body: JSON.stringify(newCart),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error adding a cart:", error);
+    return null;
+  }
+}
+
+// Function to update a cart by ID
+export async function updateCartById(id, updatedCart) {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/carts/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedCart),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error updating a cart:", error);
+    return null;
+  }
+}
+
+// Function to delete a cart by ID
+export async function deleteCartById(id) {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/carts/${id}`, {
+      method: "DELETE",
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error deleting a cart:", error);
+    return null;
+  }
+}
+
+// Functions for User API
+// Function to fetch all users
+export async function fetchAllUsers() {
+  try {
+    const response = await fetch("https://fakestoreapi.com/users");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return [];
+  }
+}
+
+// Function to fetch a single user by ID
+export async function fetchUserById(id) {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/users/${id}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    return null;
+  }
+}
+
+// Function to fetch users with a limit
+export async function fetchUsersLimit(limit) {
+  try {
+    const response = await fetch(
+      `https://fakestoreapi.com/users?limit=${limit}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching limited users:", error);
+    return [];
+  }
+}
+
+// Function to fetch users sorted by 'asc' or 'desc'
+export async function fetchUsersSorted(sortOrder) {
+  try {
+    const response = await fetch(
+      `https://fakestoreapi.com/users?sort=${sortOrder}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching sorted users:", error);
+    return [];
+  }
+}
+
+// Function to add a new user
+export async function addUser(newUser) {
+  try {
+    const response = await fetch("https://fakestoreapi.com/users", {
+      method: "POST",
+      body: JSON.stringify(newUser),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error adding a user:", error);
+    return null;
+  }
+}
+
+// Function to update a user by ID
+export async function updateUserById(id, updatedUser) {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/users/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedUser),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error updating a user:", error);
+    return null;
+  }
+}
+
+// Function to delete a user by ID
+export async function deleteUserById(id) {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/users/${id}`, {
+      method: "DELETE",
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error deleting a user:", error);
+    return null;
+  }
+}
+
+// Function for user login
+export async function userLogin(username, password) {
+  try {
+    const response = await fetch("https://fakestoreapi.com/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error logging in:", error);
+    return null;
+  }
+}

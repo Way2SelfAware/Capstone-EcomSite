@@ -1,33 +1,47 @@
 // React Hooks
-import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 // My Imports
-import { getSingleProduct } from "../../API/apiEndpoints";
+import { fetchProductById } from "../../API/apiEndpoints";
 import { MdStarRate } from "react-icons/md";
-import { ShopContext } from "../../context/shop-context";
 import "./ProductDetailsPage.css";
+
 const ProductDetailsPage = () => {
-  // Parameters Management
-  const { productId } = useParams();
-  // State Managment
+  // useParams
+  const { id } = useParams();
+
+
+  // State Management
   const [product, setProduct] = useState(null);
-  // Shop Contexter
-  const { addToCart } = useContext(ShopContext);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   // Fetch Single Product Details
   useEffect(() => {
-    fetch(`${getSingleProduct}/${productId}`)
-      .then((response) => response.json())
+    fetchProductById(id)
       .then((data) => {
         setProduct(data);
+        setLoading(false);
+        console.log(data);
+        console.log(id);
       })
-      .catch((error) => {
-        console.error("Error fetching (getSingleProduct) details:", error);
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+        console.error("Error fetching product details from API:", err);
       });
-  }, [productId]);
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div>Product not found</div>;
   }
 
   return (
@@ -41,9 +55,10 @@ const ProductDetailsPage = () => {
       <p>{product.category}</p>
       <p className="description">{product.description}</p>
       <p>${product.price}</p>
-      <button 
-      className="addToCartBttn"
-      onClick={()=> addToCart(product.id)}> Add to Cart </button>
+      <button className="addToCartBttn" onClick={() => addToCart(product.id)}>
+        {" "}
+        Add to Cart{" "}
+      </button>
       <Link to="/">Back to Shop</Link>
     </div>
   );

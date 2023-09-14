@@ -1,22 +1,19 @@
 // React Hooks
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // My Imports
-import { getAllProducts } from "../../API/apiEndpoints";
+import { fetchAllProducts } from "../../API/apiEndpoints";
 import { MdStarRate } from "react-icons/md";
-import { ShopContext } from "../../context/shop-context";
 
-const AllProducts = (props) => {
+const AllProducts = () => {
   // State Management
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // Shop- Context
-  const { addToCart } = useContext(ShopContext);
+
   //useEffect getAllProducts
   useEffect(() => {
-    fetch(getAllProducts)
-      .then((response) => response.json())
+    fetchAllProducts()
       .then((data) => {
         setProducts(data);
         setLoading(false);
