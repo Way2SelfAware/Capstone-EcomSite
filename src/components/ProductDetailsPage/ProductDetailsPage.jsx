@@ -4,12 +4,10 @@ import { Link, useParams } from "react-router-dom";
 // My Imports
 import { fetchProductById } from "../../API/apiEndpoints";
 import { MdStarRate } from "react-icons/md";
-import "./ProductDetailsPage.css";
 
 const ProductDetailsPage = () => {
   // useParams
   const { id } = useParams();
-
 
   // State Management
   const [product, setProduct] = useState(null);

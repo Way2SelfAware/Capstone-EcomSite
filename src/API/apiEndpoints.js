@@ -368,13 +368,13 @@ export async function userLogin(username, password) {
   try {
     const response = await fetch("https://fakestoreapi.com/auth/login", {
       method: "POST",
-      body: JSON.stringify({
-        username,
-        password,
-      }),
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        username: `${username}`,
+        password: `${password}`,
+      }),
     });
     const data = await response.json();
     return data;

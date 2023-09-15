@@ -9,3 +9,125 @@ body {
   padding: 0;
   margin: 0;
 }
+
+.shopTitle {
+  margin-top: 20px;
+  /* Reduced margin-top for better alignment */
+  text-align: center;
+  font-size: 40px;
+}
+
+.products {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Responsive grid */
+  gap: 20px;
+  /* Add some spacing between grid items */
+  justify-items: center;
+}
+
+.product {
+  border-radius: 15px;
+  width: 300px;
+  /* height: 350px; Remove fixed height to allow dynamic content */
+  padding: 20px;
+  /* Add padding to give space around content */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  /* Add a background color for better separation */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  /* Add a subtle box shadow for depth */
+  transition: transform 0.3s ease-in-out;
+  /* Add a transform transition for hover effect */
+}
+
+.product img {
+  max-width: 100%;
+  /* Ensure images fit within the container */
+  height: auto;
+}
+
+.product .description {
+  text-align: center;
+}
+
+.product:hover {
+  transform: scale(1.05);
+  /* Scale up on hover for a subtle zoom effect */
+  cursor: pointer;
+}
+
+.addToCartBttn,
+.selectCatBttn {
+  background-color: transparent;
+  border: 2px solid rgb(19, 19, 19);
+  min-width: 100px;
+  padding: 10px 20px;
+  /* Adjust padding for better button size */
+  border-radius: 15px;
+  text-align: center;
+  /* Center text */
+  font-weight: bold;
+  /* Make text bold for better visibility */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  /* Add transition for button hover effect */
+}
+
+.addToCartBttn:hover,
+.selectCatBttn:hover {
+  background-color: rgb(19, 19, 19);
+  color: white;
+  cursor: pointer;
+}
+
+/* Product Styling */
+.product-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.product-details img {
+  width: 300px;
+  /* Adjusted image size */
+  margin-bottom: 20px;
+  /* Adjusted margin */
+}
+
+.product-details h2 {
+  font-size: 28px;
+  /* Larger font size */
+  margin: 0;
+}
+
+.product-details p {
+  font-size: 18px;
+  /* Adjusted font size */
+  margin: 5px 0;
+}
+
+/* Add styles for star rating here */
+
+.product-details .description {
+  text-align: center;
+}
+
+.product-details .back-link {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  color: rgb(19, 19, 19);
+  transition: color 0.3s ease-in-out;
+}
+
+.product-details .back-link:hover {
+  color: #333;
+  /* Darker color on hover */
+  cursor: pointer;
+}
