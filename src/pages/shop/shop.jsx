@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useContext } from "react";
 // My Imports
 import AllProducts from "../../components/products/allProducts";
-import Categories from "../../components/categories/Categories";
-import SortProducts from "../../components/sortProducts/sortProducts";
+import Categories from "../../components/reorganizeItems/Categories";
+import SortProducts from "../../components/reorganizeItems/sortProducts";
 
 const Shop = () => {
   return (

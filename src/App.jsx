@@ -1,28 +1,28 @@
-// React Hooks
-import { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// My Imports
 import Navbar from "./components/navbar/navbar";
 import Shop from "./pages/shop/shop";
 import Cart from "./pages/cart/cart";
-import ProductDetailsPage from "./components/ProductDetailsPage/ProductDetailsPage";
-import CategoryPage from "./pages/categories/CategoryPage";
+import ProductDetailsPage from "./components/products/ProductDetailsPage";
+import CategoryPage from "./components/reorganizeItems/CategoryPage";
 import Login from "./pages/user/login";
 import "./App.css";
+import { CartProvider } from "./pages/cart/cartContext";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* NavBar */}
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Shop />} />
-          <Route path="/category/:categoryName" element={<CategoryPage />} />
-          <Route path="/product/:id" element={<ProductDetailsPage />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <CartProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Shop />} />
+            <Route path="/category/:categoryName" element={<CategoryPage />} />
+            <Route path="/product/:id" element={<ProductDetailsPage />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </CartProvider>
       </Router>
     </div>
   );
