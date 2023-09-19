@@ -372,8 +372,8 @@ export async function userLogin(username, password) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: "mor_2314",
-        password: "83r5^_",
+        username: username,
+        password: password,
       }),
     });
     const data = await response.json();
