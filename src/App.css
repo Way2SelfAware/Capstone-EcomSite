@@ -63,7 +63,8 @@ body {
 
 .addToCartBttn,
 .selectCatBttn,
-.selectSrtBttn {
+.selectSrtBttn,
+.quantity-btn {
   background-color: transparent;
   border: 2px solid rgb(19, 19, 19);
   min-width: 100px;
@@ -80,7 +81,8 @@ body {
 
 .addToCartBttn:hover,
 .selectCatBttn:hover,
-.selectSrtBttn:hover {
+.selectSrtBttn:hover,
+.quantity-btn:hover {
   background-color: rgb(19, 19, 19);
   color: white;
   cursor: pointer;
@@ -169,7 +171,7 @@ body {
   font-weight: bolder;
 }
 
-.checkout button {
+.checkout-btn {
   width: 150px;
   height: 50px;
   background-color: rgb(19, 19, 19);

@@ -1,10 +1,13 @@
 // React Hooks
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 // My Components
 import { useCart, CartProvider } from "./cartContext";
 import "./cart.css";
 
-function CartItem({ product, removeFromCart }) {
+function CartItem({ product }) {
+  const { removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
+
   return (
     <div className="cartItem">
       <img src={product.image} alt={product.name} />
@@ -13,6 +16,11 @@ function CartItem({ product, removeFromCart }) {
         <p>Price: ${product.price}</p>
         <div className="countHandler">
           <button onClick={() => removeFromCart(product.id)}>Remove</button>
+          <div className="quantity">
+            <button onClick={() => decreaseQuantity(product.id)}>-</button>
+            <span>{product.quantity}</span>
+            <button onClick={() => increaseQuantity(product.id)}>+</button>
+          </div>
         </div>
       </div>
     </div>
@@ -20,7 +28,7 @@ function CartItem({ product, removeFromCart }) {
 }
 
 function Cart() {
-  const { cart, removeFromCart, clearCart } = useCart();
+  const { cart, clearCart, calculateTotal } = useCart();
 
   const handleCheckout = () => {
     if (cart.length === 0) {
@@ -39,17 +47,21 @@ function Cart() {
     <div className="cart">
       <h2>Shopping Cart</h2>
       {cart.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p>
+          Your Cart is empty. Go pick out something nice for yourself, you
+          deserve it!
+          <br />
+          <Link to="/">Treat yo self!</Link>
+        </p>
       ) : (
         <>
           {cart.map((product) => (
-            <CartItem
-              key={product.id}
-              product={product}
-              removeFromCart={removeFromCart}
-            />
+            <CartItem key={product.id} product={product} />
           ))}
-          <button className="checkout" onClick={handleCheckout}>
+          <div className="cart-total">
+            <p>Total: ${calculateTotal()}</p>
+          </div>
+          <button className="checkout-btn" onClick={handleCheckout}>
             Checkout
           </button>
         </>
