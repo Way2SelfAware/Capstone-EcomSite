@@ -22,7 +22,6 @@ const Categories = () => {
         <p>Categories</p>
         {categories.map((category) => (
           <Link to={`/category/${category}`} key={category}>
-            {/* Use Link to navigate to the category page */}
             <button className="selectCatBttn">{category}</button>
           </Link>
         ))}
