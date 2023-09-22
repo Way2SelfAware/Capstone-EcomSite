@@ -11,6 +11,9 @@ const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  // const [sortBy, setSortBy] = useState("");
+  // const [categoryFilter, setCategoryFilter] = useState("");
+
 
   //useEffect getAllProducts
   useEffect(() => {
