@@ -70,13 +70,13 @@ const AllProducts = () => {
     <div className="shop">
       <div className="controls">
         <label>Sort By:</label>
-        <select onChange={handleSortChange}>
+        <select className="selectSrtBttn" onChange={handleSortChange}>
           <option value="">None</option>
           <option value="price-low-to-high">Price Low to High</option>
           <option value="price-high-to-low">Price High to Low</option>
         </select>
         <label>Filter By Category:</label>
-        <select onChange={handleCategoryFilterChange}>
+        <select className="selectCatBttn" onChange={handleCategoryFilterChange}>
           <option value="">None</option>
           <option value="women's clothing">Women's Clothing</option>
           <option value="electronics">Electronics</option>
@@ -84,6 +84,10 @@ const AllProducts = () => {
           <option value="men's clothing">Men's Clothing</option>
         </select>
       </div>
+      <span>
+        <br />
+        <br />
+      </span>
       <div className="products">
         {sortedProducts.map((product) => (
           <ProductCard
