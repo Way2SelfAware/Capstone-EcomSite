@@ -1,11 +1,9 @@
+// React Hooks
 import React from "react";
 import { Link } from "react-router-dom";
 import { MdStarRate } from "react-icons/md";
-import { useCart } from "../../pages/cart/cartContext";
 
-const ProductCard = ({ product }) => {
-  const { addToCart } = useCart();
-
+const ProductCard = ({ product, addToCart }) => {
   return (
     <div key={product.id} className="product">
       <img src={product.image} alt={product.title} />
