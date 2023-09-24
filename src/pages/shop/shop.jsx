@@ -2,20 +2,12 @@
 import React, { useState, useEffect, useContext } from "react";
 // My Imports
 import AllProducts from "../../components/products/allProducts";
-import Categories from "../../components/reorganizeItems/Categories";
-import SortProducts from "../../components/reorganizeItems/sortProducts";
 
 const Shop = () => {
   return (
     <div className="shop-container">
       <div className="shopTitle">
         <h1>Scamazon</h1>
-      </div>
-      <div className="categories">
-        <Categories />
-      </div>
-      <div className="sort-products">
-        <SortProducts />
       </div>
       <div className="allproducts">
         <AllProducts />;
