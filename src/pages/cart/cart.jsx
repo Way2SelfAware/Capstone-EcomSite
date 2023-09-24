@@ -28,7 +28,7 @@ function CartItem({ product }) {
 }
 
 function Cart() {
-  const { cart, clearCart, calculateTotal } = useCart();
+  const { cart, clearCart, calculateTotal, setCart } = useCart();
 
   const handleCheckout = () => {
     if (cart.length === 0) {
