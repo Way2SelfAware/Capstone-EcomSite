@@ -10,25 +10,24 @@ const Login = () => {
   const [loginError, setLoginError] = useState(null);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      const response = await userLogin(username, password);
-      if (response.token) {
-        // Store token in local storage
-        localStorage.setItem("token", response.token);
-        // Log the token
-        console.log(response.token);
-        // Redirect to the cart page
-        navigate("/cart");
-      } else {
-        // Handle login failure
-        setLoginError("Invalid username or password");
-      }
-    } catch (error) {
-      console.error("Error logging in:", error);
-      setLoginError("An error occurred while logging in");
+const handleLogin = async () => {
+  try {
+    const response = await userLogin(username, password);
+    if (response.token) {
+      // Store the user token in local storage
+      localStorage.setItem("userToken", response.token);
+
+      // Redirect to the cart page or another authorized page
+      navigate("/cart");
+    } else {
+      // Handle login failure
+      setLoginError("Invalid username or password");
     }
-  };
+  } catch (error) {
+    console.error("Error logging in:", error);
+    setLoginError("An error occurred while logging in");
+  }
+};
 
   return (
     <div className="login-form">

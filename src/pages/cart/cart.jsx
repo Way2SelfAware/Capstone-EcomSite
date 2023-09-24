@@ -40,6 +40,7 @@ function Cart() {
         "Your order has been placed successfully! Our Oompa Loompas are working on your order."
       );
       clearCart();
+      setCart([]);
     }
   };
 
