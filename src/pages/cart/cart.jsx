@@ -28,7 +28,7 @@ function CartItem({ product }) {
 }
 
 function Cart() {
-  const { cart, clearCart, calculateTotal } = useCart();
+  const { cart, clearCart, calculateTotal, setCart } = useCart();
 
   const handleCheckout = () => {
     if (cart.length === 0) {
@@ -40,6 +40,7 @@ function Cart() {
         "Your order has been placed successfully! Our Oompa Loompas are working on your order."
       );
       clearCart();
+      setCart([]);
     }
   };
 

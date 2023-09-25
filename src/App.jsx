@@ -11,8 +11,8 @@ import { CartProvider } from "./pages/cart/cartContext";
 function App() {
   return (
     <div className="App">
-      <Router>
-        <CartProvider>
+      <CartProvider>
+        <Router>
           <Navbar />
           <Routes>
             <Route path="/" element={<Shop />} />
@@ -20,8 +20,8 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
           </Routes>
-        </CartProvider>
-      </Router>
+        </Router>
+      </CartProvider>
     </div>
   );
 }

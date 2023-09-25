@@ -1,5 +1,5 @@
 // React Hooks
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
@@ -9,6 +9,26 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+
+  // Load cart from local storage
+  useEffect(() => {
+    try {
+      const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+      console.log("Loaded cart data from local storage:", savedCart);
+      // Check if cart is empty before setting it in the state
+      if (savedCart.length > 0) {
+        setCart(savedCart);
+      }
+    } catch (error) {
+      console.error("Error loading cart data from local storage:", error);
+    }
+  }, []);
+
+  // Save cart to local storage
+  useEffect(() => {
+    console.log("Saving cart data to local storage:", cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const addToCart = (product) => {
     const existingProductIndex = cart.findIndex(
@@ -66,6 +86,7 @@ export const CartProvider = ({ children }) => {
         increaseQuantity,
         decreaseQuantity,
         clearCart,
+        setCart,
         calculateTotal,
       }}
     >
